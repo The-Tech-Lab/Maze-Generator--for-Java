@@ -1,5 +1,5 @@
 # Maze-Generator-for-Java
-  two maze generators called EdwardMaze and Schatz Maze
-# Edwards
+  two maze generators called Edward-Maze and Schatz-Maze
+# Edward-Maze
   
-# Schatz
+# Schatz-Schatz
