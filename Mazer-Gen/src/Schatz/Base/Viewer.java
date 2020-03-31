@@ -2,10 +2,10 @@ package Base;
 
 import Mazes.*;
 import Mazes.Maze;
-
 import java.awt.Color;
 import java.awt.Graphics;
 import javax.swing.JPanel;
+
 
 
 
