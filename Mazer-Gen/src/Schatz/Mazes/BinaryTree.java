@@ -30,13 +30,7 @@ public class BinaryTree extends Maze {
                 } else {
                     delRight(j, i);
                 }
-                if(watch){
-                    try {
-                        Wait();
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                }
+
 
             }
 

@@ -36,6 +36,8 @@ public class GUILauncher {
 
         gui.setSize((int) (width * size + offsetX * 2), (int) (height * size + offsetY * 2.2));
         gui.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+
         if (gui.getComboName(0).equals(Type)) {
             maze = new BinaryTree(width, height, size, offsetX, offsetY, watch);
         } else if (gui.getComboName(1).equals(Type)) {
@@ -45,13 +47,13 @@ public class GUILauncher {
         } else if (gui.getComboName(3).equals(Type)) {
             maze = new BackTrack(width, height, size, offsetX, offsetY, watch);
         } else if (gui.getComboName(4).equals(Type)) {
-            maze = new RecursiveDiv(width,height,size,offsetX,offsetY,watch);
+            maze = new RecursiveDiv(width, height, size, offsetX, offsetY, watch);
         } else {
             maze = new BinaryTree(width, height, size, offsetX, offsetY, watch);
         }
 
 
-        Viewer view = new Viewer(maze, width * size, height * size);
+        Viewer view = new Viewer(maze, watch, true, width * size, height * size);
         Thread thread1 = new Thread() {
             @Override
             public void run() {

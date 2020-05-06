@@ -43,7 +43,7 @@ class launcher {
 
 
 
-        view = new Viewer(maze, width*size, height*size);
+        view = new Viewer(maze, true, true, width * size, height * size);
         Thread thread1 = new Thread() {
             @Override
             public void run() {

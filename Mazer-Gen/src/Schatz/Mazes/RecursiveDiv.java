@@ -16,50 +16,86 @@ public class RecursiveDiv extends Maze {
 
     @Override
     public void work() {
+        //drawsquare
+        for (int i = 0; i <= width - 1; i++) {
+            delUp(i, 0);
+        }
+        for (int i = 0; i <= width - 1; i++) {
+            delDown(i, height - 1);
+        }
+        for (int i = 0; i <= height - 1; i++) {
+            delLeft(0, i);
+        }
+        for (int i = 0; i <= height - 1; i++) {
+            delRight(width - 1, i);
+        }
+
+
+        //draw maze
         divide(0, 0, width, height);
-        divide(0, 0, width, height / 2);
-        divide(0, 0 + height / 2, width, height / 2);
+        Done = true;
 
     }
 
     private void divide(int x1, int y1, int w, int h) {
-       // if (r.nextBoolean()) {
-       // horz(x1, y1, w, h);
-       // } else {
-        vert(x1, y1, w, h);
-       // }
+
+
+        if (r.nextBoolean()) {
+            horizontal(x1, y1, w, h);
+            if (h <= 1)
+                divide(x1, y1, w, h);
+        } else {
+            vertical(x1, y1, w, h);
+            if (w <= 1)
+                divide(x1, y1, w, h);
+        }
 
     }
 
-    private void horz(int x1, int y1, int w, int h) {
-        int s= 2 + r.nextInt(h +1)-1;//h/2;
+    private void vertical(int x1, int y1, int w, int h) {
+        //check if too small
 
+        // find vertical middle
+        int m = r.nextInt(w - 1) + 1;
 
-        for (int i = x1; i < w; i++) {
-            delDown(x1 + i, y1 + s);
+        //create line
+        int opening = r.nextInt(h) - 1;
+        for (int i = 0; i <= h - 1; i++) {
+            if (i != opening)
+                delLeft(x1 + m, y1 + i);
 
         }
-        if (!(s <= 1)) {
-            divide(x1, y1, w, s);
-        }
-        if(!(h-s<=1)){
-            divide(x1, y1 + s, w, (h-s));
-        }
+        //split
+
+
+        //left
+        divide(x1, y1, m, h);
+        //right
+        divide(x1 + m, y1, w - m, h);
     }
 
-    private void vert(int x1, int y1, int w, int h) {
-        int s= 2 + r.nextInt(w +1)-1;//w/2;
+    private void horizontal(int x1, int y1, int w, int h) {
+        //check if too small
+        if (h <= 1)
+            return;
+        // find horizontal middle
+        int m = r.nextInt(h - 1) + 1;
 
-
-        for (int i = y1; i < h; i++) {
-            delLeft(x1 + s, y1+i);
+        //create line
+        int opening = r.nextInt(w) - 1;
+        for (int i = 0; i <= w - 1; i++) {
+            if (i != opening)
+                delUp(x1 + i, y1 + m);
 
         }
-        if (!(s <= 1)) {
-            divide(x1, y1, s, h);
-        }
-        if(!(w-s<=1)){
-            divide(x1+s, y1, (w-s), h);
-        }
+        //split
+
+
+        //up
+        divide(x1, y1, w, m);
+        //down
+        divide(x1, y1 + m, w, h - m);
     }
+
+
 }

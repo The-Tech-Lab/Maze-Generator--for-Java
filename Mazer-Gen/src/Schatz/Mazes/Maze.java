@@ -25,7 +25,7 @@ public abstract class Maze {
     protected static ArrayList<Boolean> open;
 
 
-    public Maze(int width, int height, int size, int offsetx, int offsety,boolean watch) {
+    public Maze(int width, int height, int size, int offsetx, int offsety, boolean watch) {
         this.width = width;
         this.height = height;
         cells = new Cell[width][height];
@@ -33,15 +33,15 @@ public abstract class Maze {
         this.size = size;
         this.offsetx = offsetx;
         this.offsety = offsety;
-        Done=watch;
-        this.watch=watch;
+        Done = false;
+        this.watch = watch;
 
         visited = 1;
         total = width * height;
 
     }
 
-    public void Draw(Graphics g, Color color0, Color color1){
+    public void Draw(Graphics g, Color color0, Color color1) {
         g.setColor(color1);
         g.fillRect(0, 0, width * size + offsetx * 2, height * size + offsety * 2);
 
@@ -49,7 +49,7 @@ public abstract class Maze {
 
         for (int i = 0; i < width; i++) {
             for (int j = 0; j < height; j++) {
-                cells[i][j].draw(g,color0,color1);
+                cells[i][j].draw(g, color0, color1);
 
             }
         }
@@ -58,7 +58,6 @@ public abstract class Maze {
 
 
     public abstract void work();
-
 
 
     // Move
@@ -101,12 +100,14 @@ public abstract class Maze {
     }
 
     protected void Left() {
+
         x--;
         cells[x][y].visit();
         delRight(x, y);
     }
 
     protected void Right() {
+
         x++;
         cells[x][y].visit();
         delLeft(x, y);
@@ -119,6 +120,7 @@ public abstract class Maze {
     }
 
     protected void Down() {
+
         y++;
         cells[x][y].visit();
         delUp(x, y);
@@ -126,6 +128,7 @@ public abstract class Maze {
 
     // 0-down,1-left,2-up,3-right
     protected void delUp(int x, int y) {
+        Wait();
         cells[x][y].eraseUp();
         if (y - 1 >= 0)
             cells[x][y - 1].eraseDown();
@@ -133,26 +136,35 @@ public abstract class Maze {
     }
 
     protected void delDown(int x, int y) {
+        Wait();
         cells[x][y].eraseDown();
         if (y + 1 < height)
             cells[x][y + 1].eraseUp();
     }
 
     protected void delRight(int x, int y) {
+        Wait();
         cells[x][y].eraseRight();
         if (x + 1 < width)
             cells[x + 1][y].eraseLeft();
     }
 
     protected void delLeft(int x, int y) {
+        Wait();
         cells[x][y].eraseLeft();
         if (x - 1 >= 0)
             cells[x - 1][y].eraseRight();
 
     }
 
-    protected void Wait() throws InterruptedException {
-        Thread.sleep(5);
+    protected void Wait() {
+        if (watch) {
+            try {
+                Thread.sleep((int) (size / 1.75));
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
 
     }
 

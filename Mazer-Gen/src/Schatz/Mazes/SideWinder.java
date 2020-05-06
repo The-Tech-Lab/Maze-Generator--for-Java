@@ -54,13 +54,6 @@ public class SideWinder extends Maze {
 
                 }
 
-                if(watch){
-                    try {
-                        Wait();
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                }
 
             }
 

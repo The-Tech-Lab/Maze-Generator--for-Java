@@ -9,6 +9,7 @@ public class Cell {
     private final boolean empty;
     public int x, y, size;
     public boolean visited = false;
+    public boolean pathed = false;
     private ArrayList<Boolean> openings;// 0-down,1-left,2-up,3-right
     public boolean start,end;
 
@@ -35,13 +36,17 @@ public class Cell {
     public void draw(Graphics g, Color color0, Color color1) {
         // g.drawRect(x, y, size, size);
 
-        if(start){
-            g.setColor(Color.magenta);
-            g.fillRect(x+size/4,y+size/4,size/2,size/2);
+        if (start) {
+            g.setColor(Color.red);
+            g.fillRect(1 + x + size / 4, 1 + y + size / 4, -1 + size / 2, -1 + size / 2);
         }
-        if(end){
-            g.setColor(Color.WHITE);
-            g.fillRect(x+size/4,y+size/4,size/2,size/2);
+        if (end) {
+            g.setColor(Color.orange);
+            g.fillRect(1 + x + size / 4, 1 + y + size / 4, -1 + size / 2, -1 + size / 2);
+        }
+        if (pathed) {
+            g.setColor(Color.orange);
+            g.fillRect(1 + x + size / 16, 1 + y + size / 16, size - (size / 8) - 2, size - (size / 8) - 2);
         }
         g.setColor(color0);
 

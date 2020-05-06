@@ -14,11 +14,13 @@ public class Viewer extends JPanel {
     private int width;
     private int height;
     private long startTime;
+    private boolean watch;
 
-    public Viewer(Maze maze, int width, int height) {
+    public Viewer(Maze maze, Boolean watch, Boolean play, int width, int height) {
         this.width = width;
         this.height = height;
         this.maze = maze;
+        this.watch = watch;
         startTime = System.nanoTime();
     }
 
@@ -26,12 +28,14 @@ public class Viewer extends JPanel {
         while (true) {
             repaint();
 
-            if (maze.Done) {
-                if((System.nanoTime() - startTime)>400000*1000000) {
+            if (watch && !maze.Done) {
+                if ((System.nanoTime() - startTime) > 400000 * 1000000) {
                     //startTime=System.nanoTime();
                     //maze.work();
                 }
             }
+
+
         }
     }
 
@@ -42,8 +46,8 @@ public class Viewer extends JPanel {
         g.setColor(Color.WHITE);
         g.drawString("time:  " + ((System.nanoTime() - startTime) / 1000000000), 20, 20);
 
-        if (maze.Done) {
-            maze.Draw(g,Color.BLACK,Color.WHITE.darker());
+        if (maze.Done || watch) {
+            maze.Draw(g, Color.WHITE, Color.BLACK);
 
         }
 

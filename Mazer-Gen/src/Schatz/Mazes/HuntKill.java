@@ -45,13 +45,7 @@ public class HuntKill extends Maze {
                     int num = r.nextInt(4);
                     if (!open.get(num)) {
                         // next
-                        if(watch){
-                            try {
-                                Wait();
-                            } catch (InterruptedException e) {
-                                e.printStackTrace();
-                            }
-                        }
+
 
                     } else if (num == 0) {
                         Down();

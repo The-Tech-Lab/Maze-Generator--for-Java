@@ -75,13 +75,6 @@ public class BackTrack extends Maze {
                 }
                 visited++;
                 path.add(index++, new Point(x, y));
-                if (watch) {
-                    try {
-                        Wait();
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                }
 
 
             }
