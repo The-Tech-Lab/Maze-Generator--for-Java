@@ -1,6 +1,5 @@
 # Maze-Generator-for-Java
-  two maze generators called Edward-Maze and Schatz-Maze
-# Edward-Maze
-  
-# Schatz-Maze
+### create, and illustrates multiple techniques to creating a maze
 
+## laucnh instrutions
+### run the java file name Maze generotor to begin making mazes
